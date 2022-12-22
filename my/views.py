@@ -49,28 +49,35 @@ def register(request):
 
 def home(request):
     try:
+        data={}
+        unq_cat_list = []
+        catList = []
         if request.method == "POST":
-            messages.success(request, "Hello Then")
-    
+            str = request.POST.get("serach")
+            prd = product.objects.filter(ProductName__contains=str)
+            print(prd)   
+        else:
+            prd = product.objects.all()
+        
+        cat = category.objects.all()
+        prd1 = product.objects.all()
+        for pr in prd1:
+            if pr.Category.id not in unq_cat_list:
+                unq_cat_list.append(pr.Category.id)
+                    # print(unq_cat_list)
+        for ct in cat:
+            if ct.id in unq_cat_list:
+                catList.append(ct)
+        data={
+            'cat' : catList,
+            'prd' : prd
+        }
+        print(prd)
+        return render(request,'home.html',data)
     except:
         pass    
-    data={}
-    unq_cat_list = []
-    catList = []
-    cat = category.objects.all()
-    prd = product.objects.all()
-    for pr in prd:
-        if pr.Category.id not in unq_cat_list:
-            unq_cat_list.append(pr.Category.id)
-            # print(unq_cat_list)
-    for ct in cat:
-        if ct.id in unq_cat_list:
-            catList.append(ct)
-    data={
-        'cat' : catList,
-        'prd' : prd
-    }
-    return render(request,'home.html',data)
+        
+    
 
 def logouts(request):
     logout(request)
@@ -127,19 +134,6 @@ def checkout(request):
         'prd' : prd
     }
     return render(request, 'checkout.html',data)
-
-def search(request):
-    str = request.POST.get("submit")
-    prd = product.objects.filter(ProductName__contains=str)
-    for ser in prd:
-        ok = ser.ProductName
-        print(ok)
-        
-    data={
-        'cat' : catList,
-        'prd' : prd1
-    }
-    return render(request,'home.html',data)
  
 def fetchproduct(request,ids):
     data={}

@@ -90,16 +90,16 @@
         </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
-                <a href="" class="text-decoration-none">
+                <a href="{% url 'home' %}" class="text-decoration-none">
                     <span class="h1 text-uppercase bg-dark px-2" style="color: #f7e4cb;">GAL</span>
                     <span class="h1 text-uppercase text-dark px-2 ml-n1" style="background-color: #f7e4cb;">REWARDS</span>
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="" method="post">
+                <form action="" method="Post">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products" value="submit">
+                        <input type="text" class="form-control" placeholder="Search for products" name="serach">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-dark">
                                 <i class="fa fa-search"></i>
