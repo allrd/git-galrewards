@@ -128,8 +128,12 @@ def checkout(request):
     }
     return render(request, 'checkout.html',data)
 
-
-
+def search(request):
+    prd = product.objects.filter(ProductName__contains="iphone")
+    print(prd)
+    print('rohit')
+    return render(request,'home.html')
+ 
 def fetchproduct(request,ids):
     data={}
     unq_cat_list = []

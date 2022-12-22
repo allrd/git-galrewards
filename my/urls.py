@@ -26,7 +26,8 @@ urlpatterns = [
     path('logout/',views.logouts,name='logout'),
     path('home/<int:ids>/',views.fetchproduct,name='fetchproduct'),
     path('cart/',views.cart,name='cart'),
-    path('checkout/',views.checkout,name='checkout')
+    path('checkout/',views.checkout,name='checkout'),
+    path("home1/<str:str>", views.search, name="home1")
 ]
 
 # for media
