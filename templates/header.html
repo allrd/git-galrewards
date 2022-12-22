@@ -96,9 +96,10 @@
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="">
+                <form action="" method="post">
+                    {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" placeholder="Search for products" value="submit">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-dark">
                                 <i class="fa fa-search"></i>

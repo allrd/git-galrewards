@@ -129,10 +129,17 @@ def checkout(request):
     return render(request, 'checkout.html',data)
 
 def search(request):
-    prd = product.objects.filter(ProductName__contains="iphone")
-    print(prd)
-    print('rohit')
-    return render(request,'home.html')
+    str = request.POST.get("submit")
+    prd = product.objects.filter(ProductName__contains=str)
+    for ser in prd:
+        ok = ser.ProductName
+        print(ok)
+        
+    data={
+        'cat' : catList,
+        'prd' : prd1
+    }
+    return render(request,'home.html',data)
  
 def fetchproduct(request,ids):
     data={}
