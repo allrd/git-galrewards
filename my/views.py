@@ -102,6 +102,34 @@ def cart(request):
     }
     return render(request, 'cart.html',data)
 
+
+def checkout(request):
+    try:
+        if request.method == "POST":
+            messages.success(request, "Hello Then")
+    
+    except:
+        pass    
+    data={}
+    unq_cat_list = []
+    catList = []
+    cat = category.objects.all()
+    prd = product.objects.all()
+    for pr in prd:
+        if pr.Category.id not in unq_cat_list:
+            unq_cat_list.append(pr.Category.id)
+            # print(unq_cat_list)
+    for ct in cat:
+        if ct.id in unq_cat_list:
+            catList.append(ct)
+    data={
+        'cat' : catList,
+        'prd' : prd
+    }
+    return render(request, 'checkout.html',data)
+
+
+
 def fetchproduct(request,ids):
     data={}
     unq_cat_list = []
