@@ -1,5 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
+from django.contrib.auth.models import User
 
 COUNTRY_CHOOSE = (
     ('ghana','GHANA'),
@@ -34,7 +35,7 @@ class product(models.Model):
     Category= models.ForeignKey('category', on_delete=models.CASCADE,to_field='category')
     subCategory=models.ForeignKey('subCategory', on_delete=models.CASCADE,to_field='subCategory')
     Brand = models.ForeignKey('brand',on_delete=models.CASCADE,to_field='Brand')
-    ProductName = models.CharField(max_length=50)
+    ProductName = models.CharField(max_length=50, unique=True)
     purchaseCurrency = models.CharField(max_length=3,choices=CURRNECY_CHOOSE, default='ghs')
     purchaseAmount = models.CharField(max_length=25)
     usdConversionRate= models.DecimalField(max_digits=10,decimal_places=2)
@@ -44,6 +45,11 @@ class product(models.Model):
     specifications= HTMLField()
     status = models.BooleanField(default=True)
     productImage = models.ImageField(upload_to="product/",max_length=250,null=True,default=None)
+    def __str__(self):
+        return self.ProductName
     
-    
+class cart(models.Model):
+    Product_id = models.ForeignKey('product',on_delete=models.CASCADE, to_field='ProductName')
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+
 # Create your models here.
