@@ -115,12 +115,16 @@ def carts(request):
             catList.append(ct)
             
     count = mycart.count()
+    subtotal = 0
+    for n in mycart:
+        subtotal += n.Product_id.points
         
     data={
         'cat' : catList,
         'prd' : prd,
         'myCart':mycart,
-        'cnt': count
+        'cnt': count,
+        'subtotal': subtotal
     }
     return render(request, 'cart.html',data)
 
@@ -167,6 +171,7 @@ def addToCart(request,prdId):
     produc = product.objects.all()
     temp = loader.get_template('home.html')
     
+    
     data={
         'myCart': all_cart_rec,
         'prd': produc,
@@ -174,7 +179,15 @@ def addToCart(request,prdId):
     }
     return HttpResponseRedirect(reverse('home'),data)
     #return render(request,"home.html",data)
- 
+    
+def deleteCartRec(request,prddId):
+    rec = cart.objects.get(id=prddId)
+    # print(rec)
+    rec.delete()
+    print(rec)
+    
+    return HttpResponseRedirect(reverse('cart'))
+
 def fetchproduct(request,ids):
     data={}
     unq_cat_list = []

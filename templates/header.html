@@ -22,6 +22,30 @@
  
      <!-- Customized Bootstrap Stylesheet -->
      <link rel="stylesheet" href="{% static 'css/style1.css' %}"> 
+     <script>
+        var neg = function negFunction(i){
+
+            var rec = "inpt"+i;
+            var check = document.getElementById(rec).value ;
+            if (check > 1){
+            document.getElementById(rec).value = Number(check) - 1;
+            var price = document.getElementById("price"+i).innerText;
+            document.getElementById("totalP"+i).innerText = Number(price) * Number(document.getElementById(rec).value);
+            }else{
+                alert('please is already zero');
+            }   
+        }
+
+        function posValue(j){
+            var recJ = "inpt"+j;
+            var checkJ = document.getElementById(recJ).value;
+            document.getElementById(recJ).value = Number(checkJ) + 1;
+            var priceRec = "price"+j;
+            var price = document.getElementById(priceRec).innerText;
+            document.getElementById("totalP"+j).innerText = Number(price) * Number(document.getElementById(recJ).value);
+           
+        }
+    </script>
     <title>Homepage</title>
 </head>
 <body>

@@ -19,25 +19,26 @@
                         {% for myCar in myCart %}
                         <tr>
                             <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> {{myCar.Product_id}}</td>
-                            <td class="align-middle">{{myCar.Product_id.points}}</td>
+                            <td class="align-middle" id="price{{myCar.id}}">{{myCar.Product_id.points}}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-dark btn-minus" style="background-color: #4e6659;" >
+                                        <button  id="neg{{myCar.id}}" onclick="neg({{myCar.id}})" class="btn btn-sm btn-dark btn-minus" style="background-color: #4e6659;" >
                                         <i class="fa fa-minus" style="color: wheat;"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
+                                    <input id="inpt{{myCar.id}}" type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-dark btn-plus" style="background-color: #4e6659;">
+                                        <button id="plus{{mycar.id}}" onclick="posValue({{myCar.id}})" class="btn btn-sm btn-dark btn-plus" style="background-color: #4e6659;">
                                             <i class="fa fa-plus" style="color: wheat;"></i>
                                         </button>
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">{{myCar.Product_id.points}}</td>
-                            <td class="align-middle"><a><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></a></td>
+                            <td class="align-middle" id="totalP{{myCar.id}}">{{myCar.Product_id.points}}</td>
+                            <td class="align-middle"><a href="{%url 'deleteCartRec' prddId=myCar.id %}"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></a></td>
                         </tr>
+                        
                         {% endfor%}
                     </tbody>
                 </table>
@@ -56,7 +57,7 @@
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Subtotal</h6>
-                            <h6>$150</h6>
+                            <h6>{{subtotal}}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
@@ -66,7 +67,7 @@
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5>$170</h5>
+                            <h5>$679 </h5>
                         </div>
                         <button class="btn btn-block btn-dark font-weight-bold my-3 py-3" style="background-color: #4e6659; color:wheat; ">Proceed To Checkout</button>
                     </div>
@@ -85,18 +86,23 @@
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-    {% comment %} <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   
+    <!-- JavaScript Libraries -->
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
 
     <!-- Contact Javascript File -->
-    <script src="JJS/jqBootstrapValidation.min.js"></script>
-    <script src="JJS/contact.js"></script>
+    <!-- <script src="JJS/jqBootstrapValidation.min.js"></script>
+    <script src="JJS/contact.js"></script> -->
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script> {% endcomment %}
+    <!-- <script src="js/main.js"></script>  -->
+    <!-- Add Or Mines Details -->
+   
+
+
 </body>
 
 </html>
