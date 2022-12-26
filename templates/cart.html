@@ -16,8 +16,9 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
+                        {% for myCar in myCart %}
                         <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Product Name</td>
+                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> {{myCar.ProductName}}</td>
                             <td class="align-middle">$150</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -37,7 +38,7 @@
                             <td class="align-middle">$150</td>
                             <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
                         </tr>
-                        
+                        {% endfor%}
                     </tbody>
                 </table>
             </div>

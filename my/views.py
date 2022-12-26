@@ -3,7 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from Product.models import category,product
+from Product.models import category,product,cart
+from django.template import loader
+from django.urls import reverse
 
 def logins(request):
     data={}
@@ -68,23 +70,28 @@ def home(request):
         for ct in cat:
             if ct.id in unq_cat_list:
                 catList.append(ct)
+        
+        user_id = request.user.id        
+        all_cart_rec = cart.objects.filter(user_id=user_id)
+        count = 0
+        for nn in all_cart_rec:
+            count += 1
         data={
             'cat' : catList,
-            'prd' : prd
+            'prd' : prd,
+            'cnt': count
         }
         print(prd)
         return render(request,'home.html',data)
     except:
         pass    
         
-    
-
 def logouts(request):
     logout(request)
     messages.success(request,'Logged out Sucessfully')
     return redirect('/')
 
-def cart(request):
+def carts(request):
     try:
         if request.method == "POST":
             messages.success(request, "Hello Then")
@@ -108,7 +115,6 @@ def cart(request):
         'prd' : prd
     }
     return render(request, 'cart.html',data)
-
 
 def checkout(request):
     try:
@@ -134,6 +140,32 @@ def checkout(request):
         'prd' : prd
     }
     return render(request, 'checkout.html',data)
+
+def addToCart(request,prdId):
+    prd_details = product.objects.get(id=prdId)
+    prd_name = prd_details.ProductName
+    #print(prd_name)
+    username = None
+    username = request.user.id
+    user_rec = User.objects.get(id=username)
+    
+    insert_rec = cart(Product_id=prd_details,user_id=user_rec)
+    insert_rec.save()
+    
+    all_cart_rec = cart.objects.filter(user_id=user_rec)
+    count = 0
+    for n in all_cart_rec:
+        count += 1
+    produc = product.objects.all()
+    temp = loader.get_template('home.html')
+    
+    data={
+        'myCart': all_cart_rec,
+        'prd': produc,
+        'cnt': count
+    }
+    return HttpResponseRedirect(reverse('home'),data)
+    #return render(request,"home.html",data)
  
 def fetchproduct(request,ids):
     data={}
