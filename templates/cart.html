@@ -18,8 +18,8 @@
                     <tbody class="align-middle">
                         {% for myCar in myCart %}
                         <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> {{myCar.ProductName}}</td>
-                            <td class="align-middle">$150</td>
+                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> {{myCar.Product_id}}</td>
+                            <td class="align-middle">{{myCar.Product_id.points}}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -35,8 +35,8 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle">{{myCar.Product_id.points}}</td>
+                            <td class="align-middle"><a><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></a></td>
                         </tr>
                         {% endfor%}
                     </tbody>

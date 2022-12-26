@@ -103,6 +103,9 @@ def carts(request):
     catList = []
     cat = category.objects.all()
     prd = product.objects.all()
+    user_id = request.user.id
+    user_rec = User.objects.get(id=user_id)
+    mycart = cart.objects.filter(user_id=user_rec)
     for pr in prd:
         if pr.Category.id not in unq_cat_list:
             unq_cat_list.append(pr.Category.id)
@@ -110,9 +113,14 @@ def carts(request):
     for ct in cat:
         if ct.id in unq_cat_list:
             catList.append(ct)
+            
+    count = mycart.count()
+        
     data={
         'cat' : catList,
-        'prd' : prd
+        'prd' : prd,
+        'myCart':mycart,
+        'cnt': count
     }
     return render(request, 'cart.html',data)
 
