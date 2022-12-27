@@ -94,7 +94,19 @@ def logouts(request):
 def carts(request):
     try:
         if request.method == "POST":
-            messages.success(request, "Hello Then")
+            ids = request.POST.get('action')
+            idCheck = ids[0:3]
+            print(idCheck)
+            if idCheck == "pls":
+                idss = ids.lstrip(idCheck)
+                cart_rec = cart.objects.get(id=idss)
+                cart_rec.qty += 1
+                cart_rec.save()
+            elif idCheck == "neg":
+                idss = ids.lstrip(idCheck)
+                cart_rec = cart.objects.get(id=idss)
+                cart_rec.qty -= 1
+                cart_rec.save()
     
     except:
         pass    
@@ -118,21 +130,24 @@ def carts(request):
     subtotal = 0
     for n in mycart:
         subtotal += n.Product_id.points
-        
+    
+    total = 0
+    for tot in mycart:
+        total += (tot.Product_id.points)*tot.qty
+    
     data={
         'cat' : catList,
         'prd' : prd,
         'myCart':mycart,
         'cnt': count,
-        'subtotal': subtotal
+        'total': total,
     }
     return render(request, 'cart.html',data)
 
 def checkout(request):
     try:
         if request.method == "POST":
-            messages.success(request, "Hello Then")
-    
+            pass
     except:
         pass    
     data={}
@@ -170,16 +185,20 @@ def addToCart(request,prdId):
         count += 1
     produc = product.objects.all()
     temp = loader.get_template('home.html')
-    
+    total = 0
+    for tot in all_cart_rec:
+        total += (tot.Product_id.points)*tot.qty
     
     data={
         'myCart': all_cart_rec,
         'prd': produc,
-        'cnt': count
+        'cnt': count,
+        'total': total
     }
     return HttpResponseRedirect(reverse('home'),data)
-    #return render(request,"home.html",data)
-    
+
+  
+   
 def deleteCartRec(request,prddId):
     rec = cart.objects.get(id=prddId)
     # print(rec)
@@ -199,7 +218,10 @@ def fetchproduct(request,ids):
     cat = category.objects.all()
     prd = product.objects.all()
     prd1 = product.objects.filter(Category=catt)
-    
+    username = request.user.id
+    user_rec = User.objects.get(id=username)
+    all_cart_rec = cart.objects.filter(user_id=user_rec)
+    count = all_cart_rec.count()
     
     for pr in prd:
         if pr.Category.id not in unq_cat_list:
@@ -210,6 +232,7 @@ def fetchproduct(request,ids):
             catList.append(ct)
     data={
         'cat' : catList,
-        'prd' : prd1
+        'prd' : prd1,
+        'cnt': count
     }
     return render(request,'home.html',data)

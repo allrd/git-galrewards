@@ -28,7 +28,8 @@ urlpatterns = [
     path('carts/',views.carts,name='cart'),
     path('checkout/',views.checkout,name='checkout'),
     path('addToCart/<int:prdId>',views.addToCart,name='addToCart'),
-    path('deleteCartRec/<int:prddId>',views.deleteCartRec,name='deleteCartRec'),
+    path('deleteCartRec/<int:prddId>',views.deleteCartRec,name='deleteCartRec')
+    
     
     
 ]

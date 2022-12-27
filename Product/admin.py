@@ -18,7 +18,7 @@ class productAdmin(admin.ModelAdmin):
 admin.site.register(product,productAdmin)
 
 class cartAdmin(admin.ModelAdmin):
-    list_display=('id','Product_id','user_id')
+    list_display=('id','Product_id','user_id','qty')
 admin.site.register(cart,cartAdmin)
 
 # Register your models here.

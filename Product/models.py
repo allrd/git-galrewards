@@ -51,5 +51,6 @@ class product(models.Model):
 class cart(models.Model):
     Product_id = models.ForeignKey('product',on_delete=models.CASCADE, to_field='ProductName')
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    qty = models.IntegerField()
 
 # Create your models here.

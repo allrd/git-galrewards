@@ -23,19 +23,25 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button  id="neg{{myCar.id}}" onclick="neg({{myCar.id}})" class="btn btn-sm btn-dark btn-minus" style="background-color: #4e6659;" >
+                                        <form method="post">
+                                            {% csrf_token%}
+                                        <button  id="neg{{myCar.id}}" value="neg{{myCar.id}}" onclick="neg({{myCar.id}})" class="btn btn-sm btn-dark btn-minus" name="action" style="background-color: #4e6659;" >
                                         <i class="fa fa-minus" style="color: wheat;"></i>
                                         </button>
+                                        </form>
                                     </div>
-                                    <input id="inpt{{myCar.id}}" type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="1">
+                                    <input id="inpt{{myCar.id}}" type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="{{myCar.qty}}">
                                     <div class="input-group-btn">
-                                        <button id="plus{{mycar.id}}" onclick="posValue({{myCar.id}})" class="btn btn-sm btn-dark btn-plus" style="background-color: #4e6659;">
+                                        <form method="post">
+                                            {% csrf_token %} 
+                                        <button id="plus{{mycar.id}}" value="pls{{myCar.id}}" onclick="posValue({{myCar.id}})" name="action" lass="btn btn-sm btn-dark btn-plus" style="background-color: #4e6659;">
                                             <i class="fa fa-plus" style="color: wheat;"></i>
                                         </button>
+                                        </form>
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle" id="totalP{{myCar.id}}">{{myCar.Product_id.points}}</td>
+                            <td class="align-middle" id="totalP{{myCar.id}}">{% widthratio myCar.Product_id.points 1 myCar.qty %}</td>
                             <td class="align-middle"><a href="{%url 'deleteCartRec' prddId=myCar.id %}"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></a></td>
                         </tr>
                         
@@ -57,7 +63,7 @@
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Subtotal</h6>
-                            <h6 id="rohit">{{subtotal}}</h6>
+                            <h6 id="rohit">{{total}}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
