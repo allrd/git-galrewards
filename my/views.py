@@ -176,7 +176,7 @@ def addToCart(request,prdId):
     username = request.user.id
     user_rec = User.objects.get(id=username)
     
-    insert_rec = cart(Product_id=prd_details,user_id=user_rec)
+    insert_rec = cart(Product_id=prd_details,user_id=user_rec,qty=1)
     insert_rec.save()
     
     all_cart_rec = cart.objects.filter(user_id=user_rec)
@@ -184,20 +184,15 @@ def addToCart(request,prdId):
     for n in all_cart_rec:
         count += 1
     produc = product.objects.all()
-    temp = loader.get_template('home.html')
-    total = 0
-    for tot in all_cart_rec:
-        total += (tot.Product_id.points)*tot.qty
+    
+    
     
     data={
         'myCart': all_cart_rec,
         'prd': produc,
         'cnt': count,
-        'total': total
     }
     return HttpResponseRedirect(reverse('home'),data)
-
-  
    
 def deleteCartRec(request,prddId):
     rec = cart.objects.get(id=prddId)
