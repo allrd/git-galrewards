@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from Product.models import category,product,cart
 from django.template import loader
 from django.urls import reverse
+
 
 def logins(request):
     data={}
@@ -15,6 +16,7 @@ def logins(request):
         print(userN)
         print(pas)
         check = authenticate(username=userN, password=pas)
+        
         if check != None:
             login(request, check)
             data={
@@ -231,3 +233,32 @@ def fetchproduct(request,ids):
         'cnt': count
     }
     return render(request,'home.html',data)
+
+def adminPn(request):
+    return render(request,'adminPn.html')
+
+def adminLogin(request):
+    data={}
+    if request.method == "POST":
+        userN = request.POST.get('userName')
+        pas= request.POST.get('password')
+        print(userN)
+        print(pas)
+        check = authenticate(username=userN, password=pas)
+        chh = User.objects.get(username=userN)
+        
+        if chh.is_superuser:
+            print("admin")
+            if check != None:
+                login(request, check)
+                data={
+                    'userName' : check.first_name,
+                }
+                messages.success(request, "Login Secessfully")
+                return redirect('adminPn')
+            else:
+                messages.error(request, "Wrong Details")
+        else:
+            messages.error(request,"Not a Admin User details")
+
+    return render(request,'adminLogin.html')
