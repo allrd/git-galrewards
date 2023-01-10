@@ -53,4 +53,7 @@ class cart(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     qty = models.IntegerField()
 
+class currency(models.Model):
+    currency = models.CharField( max_length=3, unique=True)
+
 # Create your models here.

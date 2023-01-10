@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Product.models import category,subCategory,brand,product,cart
+from Product.models import category,subCategory,brand,product,cart,currency
 
 class categoryAdmin(admin.ModelAdmin):
     list_display =('id','category','status','country')
@@ -20,5 +20,9 @@ admin.site.register(product,productAdmin)
 class cartAdmin(admin.ModelAdmin):
     list_display=('id','Product_id','user_id','qty')
 admin.site.register(cart,cartAdmin)
+
+class currencyAdmin(admin.ModelAdmin):
+    list_display=('id','currency')
+admin.site.register(currency,currencyAdmin)
 
 # Register your models here.

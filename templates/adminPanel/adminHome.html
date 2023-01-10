@@ -1,8 +1,41 @@
 {% include "adminPanel/adminHeader.html"%}
 
 {% if user.is_authenticated %}
-    <!-- End Side Bar -->
-    <!-- Start Forms Detils -->
+   
+<div class="d-flex flex-column flex-shrink-0 p-3 col-md">
+    <div class="d-flex align-items-center">
+        <div class="d-inline-block">
+        <h2 class="">All Products</h2>
+        </div>
+        <div class="col-5 pl-4">
+        <a href="{% url 'addProduct'%}">+ Add</a>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">CATEGORY</th>
+                <th scope="col">SUBCATEGORY</th>
+                <th scope="col">BRAND</th>
+                <th scope="col">PRODUCTNAME</th>
+                <th scope="col">POINTS</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for n in allProduct%}
+            <tr>
+                <td>{{n.Category}}</td>
+                <td>{{n.subCategory}}</td>
+                <td>{{n.Brand}}</td>
+                <td>{{n.ProductName}}</td>
+                <td>{{n.points}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+
+    </table>
+    
+  </div>
       
-    {%endif%}
+{%endif%}
 {% include "adminPanel/adminFooter.html" %}

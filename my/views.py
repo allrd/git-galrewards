@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
-from Product.models import category,product,cart
+from Product.models import category,product,cart,subCategory,brand,currency
 from django.template import loader
 from django.urls import reverse
 
@@ -235,7 +235,24 @@ def fetchproduct(request,ids):
     return render(request,'home.html',data)
 
 def adminHome(request):
-    return render(request,'adminPanel/adminHome.html')
+    all_product=product.objects.all()
+    data={
+         'allProduct':all_product,
+    }
+    return render(request,'adminPanel/adminHome.html',data)
+def addProdcut(request):
+    cat = category.objects.all()
+    sub_cat = subCategory.objects.all()
+    brnd = brand.objects.all()
+    curr = currency.objects.all()
+    data = {
+        'Cat':cat,
+        'Sub_Cat':sub_cat,
+        'Brnd':brnd,
+        'Cur':curr,
+    }
+    return render(request,'adminPanel/addProduct.html',data)
+
 
 def adminLogin(request):
     data={}
@@ -246,13 +263,14 @@ def adminLogin(request):
         print(pas)
         check = authenticate(username=userN, password=pas)
         chh = User.objects.get(username=userN)
-        
+        all_product = product.objects.all()
         if chh.is_superuser:
             print("admin")
             if check != None:
                 login(request, check)
                 data={
                     'userName' : check.first_name,
+                    'allProduct':all_product,
                 }
                 messages.success(request, "Login Secessfully")
                 return redirect('adminHome')

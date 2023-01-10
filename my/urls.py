@@ -31,6 +31,7 @@ urlpatterns = [
     path('deleteCartRec/<int:prddId>',views.deleteCartRec,name='deleteCartRec'),
     path('adminHome/',views.adminHome,name='adminHome'),
     path('adminLogin/', views.adminLogin,name='adminLogin'),
+    path('addProduct/',views.addProdcut,name='addProduct'),
    
     
     
