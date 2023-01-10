@@ -234,8 +234,8 @@ def fetchproduct(request,ids):
     }
     return render(request,'home.html',data)
 
-def adminPn(request):
-    return render(request,'adminPn.html')
+def adminHome(request):
+    return render(request,'adminPanel/adminHome.html')
 
 def adminLogin(request):
     data={}
@@ -255,10 +255,10 @@ def adminLogin(request):
                     'userName' : check.first_name,
                 }
                 messages.success(request, "Login Secessfully")
-                return redirect('adminPn')
+                return redirect('adminHome')
             else:
                 messages.error(request, "Wrong Details")
         else:
             messages.error(request,"Not a Admin User details")
 
-    return render(request,'adminLogin.html')
+    return render(request,'adminPanel/adminLogin.html')

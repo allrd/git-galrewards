@@ -29,7 +29,7 @@ urlpatterns = [
     path('checkout/',views.checkout,name='checkout'),
     path('addToCart/<int:prdId>',views.addToCart,name='addToCart'),
     path('deleteCartRec/<int:prddId>',views.deleteCartRec,name='deleteCartRec'),
-    path('adminPn/',views.adminPn,name='adminPn'),
+    path('adminHome/',views.adminHome,name='adminHome'),
     path('adminLogin/', views.adminLogin,name='adminLogin'),
    
     

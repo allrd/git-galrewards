@@ -1,0 +1,20 @@
+{% include "adminPanel/adminHeader.html"%}
+
+{% if user.is_authenticated %}
+    <!-- End Side Bar -->
+    <!-- Start Forms Detils -->
+      <div class="d-flex flex-column flex-shrink-0 p-3 col-md">
+        <h2>Add Brand Details</h2>
+        <div class="p-4">
+          <form action="">
+            <div class="mb-3">
+            <!-- <label for="" class="form-label">Brand</label> -->
+            <input type="text" class="form-control" placeholder="   Enter Brand Name"><br>
+          </div>
+            <input type="submit" class="btn btn-dark mx-3">
+          </form>
+        </div>
+        
+      </div>
+    {%endif%}
+{% include "adminPanel/adminFooter.html" %}
