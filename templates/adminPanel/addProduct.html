@@ -6,14 +6,15 @@
       <div class="d-flex flex-column flex-shrink-0 p-3 col-md">
         <h2>Add Product</h2>
         <div class="p-4">
-          <form action="">
+          <form method="post">
+            {% csrf_token%}
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label">Catogery:</label>
                 <div class="col-sm-10">
-                  <select name="Catogery" id="" class="form-select form-select-md col-lg-3">
+                  <select name="catDetails" id="" class="form-select form-select-md col-lg-3">
                     <option value=""></option>
                     {%for ct in Cat%}
-                    <option value="{{ct.id}}">{{ct.category}}</option>
+                    <option value="{{ct.id}}" name="catDetails">{{ct.category}}</option>
                     {%endfor%}
                   </select>
                 </div>
@@ -22,51 +23,99 @@
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label">Sub Catogery:</label>
                 <div class="col-sm-10">
-                  <select name="Catogery" id="" class="form-select form-select-md col-lg-3">
+                  <select name="SubCatogery" id="" class="form-select form-select-md col-lg-3">
                     <option value=""></option>
                     {%for sub_ct in Sub_Cat%}
-                    <option value="{{sub_ct.id}}">{{sub_ct.subCategory}}</option>
+                    <option value="{{sub_ct.id}}" name="SubCatogery">{{sub_ct.subCategory}}</option>
                     {%endfor%}
                   </select>
                 </div>
             </div>
 
-            <div class="mb-3 row">
+            <div class="mb-3 row ">
               <label for="" class="col-sm-2 col-form-label">Brand:</label>
                 <div class="col-sm-10">
-                  <select name="Catogery" id="" class="form-select form-select-md col-lg-3">
+                  <select name="brand" id="" class="form-select form-select-md col-lg-3">
                     <option value=""></option>
                     {%for brd in Brnd%}
-                    <option value="{{brd.id}}">{{brd.Brand}}</option>
+                    <option value="{{brd.id}}" name="brand">{{brd.Brand}}</option>
                     {%endfor%}
                   </select>
                 </div>
             </div>
             
             <div class="mb-3 row">
-              <label for="" class="col-sm-2 col-form-label">ProductName:</label>
+              <label for="" class="col-sm-2 col-form-label" >Product Name:</label>
                 <div class="col-sm-auto">
-                  <input type="text" class="form-control" name="porduct" value="">
+                  <input type="text" class="form-control" name="prdDetails" value="" placeholder="Product Name">
                 </div>
             </div>
 
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label">Currency:</label>
                 <div class="col-sm-4">
-                  <select name="Catogery" id="" class="form-select form-select-md col-lg-3">
+                  <select name="Curren111" id="" onchange="scheduleA.call(this, event)" class="form-select form-select-md col-lg-3">
                     <option value=""></option>
                     {%for curr in Cur%}
-                    <option value="{{curr.id}}">{{curr.currency}}</option>
+                    <option value="{{curr.id}}" name="Curren111" >{{curr.currency}}</option>
                     {%endfor%}
                   </select>
                 </div>
             </div>
 
+            <div class="mb-3 row">
+              <label for="" class="col-sm-2 col-form-label">Purchase Amount:</label>
+                <div class="col-sm-auto">
+                  <input type="number" id="purchaseAmount" class="form-control" onChange="calculateUsdAmount()" name="purchaseAmount111" value="" placeholder="0.00">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="" class="col-sm-2 col-form-label">Rate:</label>
+                <div class="col-sm-auto">
+                  <input type="number" id="rate" class="form-control" name="ratetake" value="" placeholder="0.00" >
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="" class="col-sm-2 col-form-label">Cost in USD:</label>
+                <div class="col-sm-auto">
+                  <input type="number" id="costInUsd" class="form-control" name="costInUsd111" value="" placeholder="0.00" >
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="" class="col-sm-2 col-form-label">Per Point Cost:</label>
+                <div class="col-sm-auto">
+                  <input type="number" id="PerPointCost" class="form-control" name="PerPointCost111" value="" placeholder="0.09570" disabled>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="" class="col-sm-2 col-form-label">Point:</label>
+                <div class="col-sm-auto">
+                  <input type="number" id="Point" class="form-control" name="Point111" value="" placeholder="0.00" disabled>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+              <div class="input-group col-lg-6">
+                <span class="input-group-text">Specification</span>
+                <textarea class="form-control" aria-label="With textarea" name="specification111"></textarea>
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <div class="input-group col-lg-5">
+              <input type="file" class="form-control" id="inputProductFile" name="file111">
+              <label class="input-group-text" for="inputProductFile">Upload</label>
+              </div>
+            </div>
 
             <input type="submit" value="Add Product"class="btn btn-dark mx-3">
           </form>
         </div>
-        
+        <hr>
       </div>
     {%endif%}
 {% include "adminPanel/adminFooter.html" %}

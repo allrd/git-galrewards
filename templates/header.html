@@ -29,7 +29,7 @@
 
             var rec = "inpt"+i;
             var check = document.getElementById(rec).value ;
-            if (check > 1){
+            if (check > 1){ 
             document.getElementById(rec).value = Number(check) - 1;
             var price = document.getElementById("price"+i).innerText;
             document.getElementById("totalP"+i).innerText = Number(price) * Number(document.getElementById(rec).value);

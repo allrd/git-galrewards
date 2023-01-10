@@ -41,6 +41,45 @@
           }
         }
       </style>
+
+      <script>
+        // get rate with the help of JAVA Script
+        const api = "https://api.exchangerate-api.com/v4/latest/USD";
+
+       function scheduleA(event){
+          var cur = this.options[this.selectedIndex].text;
+
+          fetch(`${api}`)
+          .then(currency => {
+              return currency.json();
+          }).then(displayResults);
+
+          function displayResults(currency) {
+            var rate = currency["rates"];
+            var main_rate = rate[cur];
+  
+            var rateRec = document.getElementById("rate");
+            rateRec.value = main_rate;
+            
+            }
+        }
+
+        // calculate Usd Amount
+        function calculateUsdAmount(){
+          var rate = document.getElementById("rate").value;
+          var changeValue = document.getElementById("purchaseAmount").value;
+          usdAmount = Math.round(changeValue/rate);
+          var usdValue = document.getElementById("costInUsd");
+          usdValue.value = usdAmount;
+          pointt = Math.round((changeValue/rate)/0.09570);
+
+          var poin = document.getElementById("Point");
+          poin.value = pointt;
+          
+        }
+
+      </script>
+
 </head>
 <body>
     <div class="text-center bg-dark text-light"> <h2>Admin Panel</h2></div>

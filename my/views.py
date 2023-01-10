@@ -240,7 +240,31 @@ def adminHome(request):
          'allProduct':all_product,
     }
     return render(request,'adminPanel/adminHome.html',data)
+
 def addProdcut(request):
+    try:
+        if request.method == "POST":
+            catogery = request.POST.get("catDetails")
+            subCategorys = request.POST.get("SubCatogery")
+            brands = request.POST.get("brand")
+            prdName = request.POST.get("prdDetails")
+            currs = request.POST.get("Curren111")
+            purAmount = request.POST.get("purchaseAmount111")
+            rates1 =request.POST.get("ratetake")
+            costUSD =request.POST.get("costInUsd111")
+            perPntCst =request.POST.get("PerPointCost111")
+            pnt =request.POST.get("Point111")
+            specific =request.POST.get("specification111")
+            fill = request.POST.get("file111")
+            
+            # prodUpdate = product.objects.all()
+            # prodUpdate.Category = catogery
+            
+            
+            
+    except:
+        pass
+    
     cat = category.objects.all()
     sub_cat = subCategory.objects.all()
     brnd = brand.objects.all()
