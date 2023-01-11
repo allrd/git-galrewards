@@ -6,7 +6,7 @@ from django.contrib import messages
 from Product.models import category,product,cart,subCategory,brand,currency
 from django.template import loader
 from django.urls import reverse
-
+from django.core.files.storage import FileSystemStorage
 
 def logins(request):
     data={}
@@ -244,24 +244,36 @@ def adminHome(request):
 def addProdcut(request):
     try:
         if request.method == "POST":
-            catogery = request.POST.get("catDetails")
-            subCategorys = request.POST.get("SubCatogery")
-            brands = request.POST.get("brand")
+            catogery = category.objects.get(id=request.POST.get("catDetails"))
+            subCategorys =  subCategory.objects.get(id= request.POST.get("SubCatogery"))
+            brands = brand.objects.get(id= request.POST.get("brand"))
             prdName = request.POST.get("prdDetails")
-            currs = request.POST.get("Curren111")
+            currs = currency.objects.get(id=request.POST.get("Curren111"))
+            curr = currs.currency
             purAmount = request.POST.get("purchaseAmount111")
             rates1 =request.POST.get("ratetake")
             costUSD =request.POST.get("costInUsd111")
-            perPntCst =request.POST.get("PerPointCost111")
-            pnt =request.POST.get("Point111")
+            pnt =request.POST.get("PointMain")
+            print(pnt)
             specific =request.POST.get("specification111")
-            fill = request.POST.get("file111")
-            
-            # prodUpdate = product.objects.all()
-            # prodUpdate.Category = catogery
-            
-            
-            
+            fills = request.FILES.get("file111")
+            #fill = request.FILES['file111']
+            # form = UploadFileForm(request.POST, request.FILES)
+            print("Rohit")
+            crr = product.objects.create(
+                productImage=fills,
+                Category = catogery,
+                subCategory = subCategorys,
+                Brand = brands,
+                ProductName=prdName,
+                purchaseCurrency=curr.lower(),
+                usdConversionRate = rates1,
+                costInUsd = costUSD,
+                points = pnt,
+                purchaseAmount = purAmount,
+                specifications = specific,
+            )
+            print(crr)
     except:
         pass
     

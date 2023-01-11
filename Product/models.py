@@ -30,21 +30,25 @@ class brand(models.Model):
     def __str__(self):
         return self.Brand
 
+class currency(models.Model):
+    currency = models.CharField( max_length=3, unique=True)
+    def __str__(self):
+        return self.currency
     
 class product(models.Model):
-    Category= models.ForeignKey('category', on_delete=models.CASCADE,to_field='category')
-    subCategory=models.ForeignKey('subCategory', on_delete=models.CASCADE,to_field='subCategory')
-    Brand = models.ForeignKey('brand',on_delete=models.CASCADE,to_field='Brand')
+    Category= models.ForeignKey('category', on_delete=models.CASCADE,to_field='category',blank=True)
+    subCategory=models.ForeignKey('subCategory', on_delete=models.CASCADE,to_field='subCategory',blank=True)
+    Brand = models.ForeignKey('brand',on_delete=models.CASCADE,to_field='Brand',blank=True)
     ProductName = models.CharField(max_length=50, unique=True)
-    purchaseCurrency = models.CharField(max_length=3,choices=CURRNECY_CHOOSE, default='ghs')
-    purchaseAmount = models.CharField(max_length=25)
-    usdConversionRate= models.DecimalField(max_digits=10,decimal_places=2)
-    costInUsd = models.IntegerField()
-    perPointCost=models.DecimalField(max_digits=5,decimal_places=4,default=0.018)
-    points=models.IntegerField()
-    specifications= HTMLField()
+    purchaseCurrency = models.CharField(max_length=3,choices=CURRNECY_CHOOSE, default='ghs',blank=True)
+    purchaseAmount = models.CharField(max_length=25,blank=True)
+    usdConversionRate= models.DecimalField(max_digits=10,decimal_places=2,blank=True)
+    costInUsd = models.IntegerField(blank=True)
+    perPointCost=models.DecimalField(max_digits=5,decimal_places=4,default=0.9570,blank=True)
+    points=models.IntegerField(blank=True)
+    specifications= HTMLField(blank=True)
     status = models.BooleanField(default=True)
-    productImage = models.ImageField(upload_to="product/",max_length=250,null=True,default=None)
+    productImage = models.ImageField(upload_to="product/",max_length=250,null=True,default=None,blank=True)
     def __str__(self):
         return self.ProductName
     
@@ -53,7 +57,6 @@ class cart(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     qty = models.IntegerField()
 
-class currency(models.Model):
-    currency = models.CharField( max_length=3, unique=True)
+
 
 # Create your models here.
