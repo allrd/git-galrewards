@@ -5,26 +5,24 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 col-md">
     <div class="d-flex align-items-center">
         <div class="d-inline-block">
-        <h2 class="">Sub Category</h2>
+        <h2 class="">Currency</h2>
         </div>
         <div class="col-5 pl-4">
-        <a href="{% url 'addSubCategory'%}">+ Add</a>
+        <a href="{% url 'addCurrency'%}">+ Add</a>
         </div>
     </div>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Sub Category</th>
-                <th scope="col">Category</th>
+                <th scope="col">Currency</th>
             </tr>
         </thead>
         <tbody>
-           {% for n in allSubCat%}
+           {% for n in allcat%}
             <tr>
                 <td>{{n.id}}</td>     
-                <td>{{n.subCategory}}</td>  
-                <td>{{n.categoryL}}</td>   
+                <td>{{n.currency}}</td>  
             </tr>
             {%endfor%}
         </tbody>

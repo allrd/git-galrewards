@@ -39,6 +39,7 @@ urlpatterns = [
     path('addBrand/',views.addBrand,name='addBrand'),
     path('addCategory/',views.addCategory,name='addCategory'),
     path('addSubCategory/',views.addSubCategory,name='addSubCategory'),
+    path('addCurrency/',views.addCurrency,name='addCurrency'),
 ]
 
 

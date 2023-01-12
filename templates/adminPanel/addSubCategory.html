@@ -13,6 +13,17 @@
                     <input type="text" class="form-control" name="Subcatt" value="" placeholder="Sub Category">
                 </div>
         </div>
+        <div class="mb-3 row">
+              <label for="" class="col-sm-2 col-form-label">Catogery:</label>
+                <div class="col-sm-10">
+                  <select name="catDetails" id="" class="form-select form-select-md col-lg-3">
+                    <option value=""></option>
+                    {%for ct in Cat%}
+                    <option value="{{ct.id}}" name="catDetails">{{ct.category}}</option>
+                    {%endfor%}
+                  </select>
+                </div>
+            </div>
         <input type="submit" value="Add Sub Category"class="btn btn-dark mx-3">
       </form>
     </div>

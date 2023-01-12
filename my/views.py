@@ -261,11 +261,11 @@ def adminSubCategory(request):
     return render(request,'adminPanel/adminSubCategory.html',data)
 
 def adminCurrency(request):
-    allBrand = brand.objects.all()
+    allCurrency = currency.objects.all()
     data={
-        'allBrand': allBrand,
+        'allcat': allCurrency,
     }
-    return render(request,'adminPanel/adminBrand.html',data)
+    return render(request,'adminPanel/adminCurrency.html',data)
 
 def addProdcut(request):
     try:
@@ -359,20 +359,50 @@ def addSubCategory(request):
     try:
         if request.method == "POST":
             Subcat = request.POST.get("Subcatt")
+            catogery = category.objects.get(id=request.POST.get("catDetails"))
             Subcrr = subCategory.objects.create(
-                Subcategory = Subcat,
+                subCategory = Subcat,
+                categoryL = catogery,
             )
             print(Subcrr)
-            allSubCat = subCategory.objects.all()
+            allSubcat = subCategory.objects.all()
             data={
-                'allSubcat':allSubCat,
+                'allSubCat': allSubcat,
             }
             return render(request,'adminPanel/adminSubCategory.html',data)
     except:
         pass
     
-    return render(request,'adminPanel/addSubCategory.html')
-   
+    cat = category.objects.all()
+    sub_cat = subCategory.objects.all()
+    brnd = brand.objects.all()
+    curr = currency.objects.all()
+    data = {
+        'Cat':cat,
+        'Sub_Cat':sub_cat,
+        'Brnd':brnd,
+        'Cur':curr,
+    }
+    
+    return render(request,'adminPanel/addSubCategory.html',data)
+ 
+def addCurrency(request):
+    try:
+        if request.method == 'POST':
+            curr = request.POST.get('currencyMain')
+            addCrr = currency.objects.create(
+                currency = curr,
+            )
+            print('addCrr')
+            allCurrency = currency.objects.all()
+            data={
+                'allcat': allCurrency,
+            }
+            return render(request,'adminPanel/adminCurrency.html',data)
+    except:
+        pass
+    
+    return render(request,'adminPanel/addCurrency.html')  
     
 def adminLogin(request):
     data={}
