@@ -241,6 +241,32 @@ def adminHome(request):
     }
     return render(request,'adminPanel/adminHome.html',data)
 
+def adminBrand(request):
+    allBrand = brand.objects.all()
+    data={
+        'allBrand': allBrand,
+    }
+    return render(request,'adminPanel/adminBrand.html',data)
+def adminCategory(request):
+    allcat = category.objects.all()
+    data={
+        'allcat': allcat,
+    }
+    return render(request,'adminPanel/adminCategory.html',data)
+def adminSubCategory(request):
+    allSubcat = subCategory.objects.all()
+    data={
+        'allSubCat': allSubcat,
+    }
+    return render(request,'adminPanel/adminSubCategory.html',data)
+
+def adminCurrency(request):
+    allBrand = brand.objects.all()
+    data={
+        'allBrand': allBrand,
+    }
+    return render(request,'adminPanel/adminBrand.html',data)
+
 def addProdcut(request):
     try:
         if request.method == "POST":
@@ -289,7 +315,65 @@ def addProdcut(request):
     }
     return render(request,'adminPanel/addProduct.html',data)
 
+def addBrand(request):
+    try:
+        if request.method == 'POST':
+            print('Rohir')
+            brd = request.POST.get("brdd")
+            print(brd)
+            brr = brand.objects.create(
+                Brand=brd,
+            )
+            print(brr)
+            allBrand = brand.objects.all()
+            data={
+                'allBrand': allBrand,
+                }
+            return render(request,'adminPanel/adminBrand.html',data)
 
+    
+    except:
+        pass
+    
+    return render(request,'adminPanel/addBrand.html')
+
+def addCategory(request):
+    try:
+        if request.method == "POST":
+            cat = request.POST.get("catt")
+            crr = category.objects.create(
+                category = cat,
+            )
+            print(crr)
+            allCat = category.objects.all()
+            data={
+                'allcat':allCat,
+            }
+            return render(request,'adminPanel/adminCategory.html',data)
+    except:
+        pass
+    
+    return render(request,'adminPanel/addCategory.html')
+ 
+def addSubCategory(request):
+    try:
+        if request.method == "POST":
+            Subcat = request.POST.get("Subcatt")
+            Subcrr = subCategory.objects.create(
+                Subcategory = Subcat,
+            )
+            print(Subcrr)
+            allSubCat = subCategory.objects.all()
+            data={
+                'allSubcat':allSubCat,
+            }
+            return render(request,'adminPanel/adminSubCategory.html',data)
+    except:
+        pass
+    
+    return render(request,'adminPanel/addSubCategory.html')
+   
+    
 def adminLogin(request):
     data={}
     if request.method == "POST":

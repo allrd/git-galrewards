@@ -1,0 +1,39 @@
+{% include "adminPanel/adminHeader.html"%}
+
+{% if user.is_authenticated %}
+   
+<div class="d-flex flex-column flex-shrink-0 p-3 col-md">
+    <div class="d-flex align-items-center">
+        <div class="d-inline-block">
+        <h2 class="">Category</h2>
+        </div>
+        <div class="col-5 pl-4">
+        <a href="{% url 'addCategory'%}">+ Add</a>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+                <th scope="col">Country</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for n in allcat%}
+            <tr>
+                <td>{{n.id}}</td>     
+                <td>{{n.category}}</td>  
+                <td>{{n.status}}</td>  
+                <td>{{n.country}}</td>   
+            </tr>
+            {%endfor%}
+        </tbody>
+
+    </table>
+    
+  </div>
+      
+{%endif%}
+{% include "adminPanel/adminFooter.html" %}

@@ -1,0 +1,22 @@
+{% include "adminPanel/adminHeader.html"%}
+
+{% if user.is_authenticated %}
+
+<div class="d-flex flex-column flex-shrink-0 p-3 col-md">
+    <h2>Add Sub Category</h2>
+    <div class="p-4">
+      <form method="post">
+        {% csrf_token%}
+        <div class="mb-3 row">
+            <label for="" class="col-sm-2 col-form-label">Sub Category:</label>
+                <div class="col-sm-auto">
+                    <input type="text" class="form-control" name="Subcatt" value="" placeholder="Sub Category">
+                </div>
+        </div>
+        <input type="submit" value="Add Sub Category"class="btn btn-dark mx-3">
+      </form>
+    </div>
+</div>
+{%endif%}
+
+{% include "adminPanel/adminFooter.html" %}

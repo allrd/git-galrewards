@@ -30,12 +30,15 @@ urlpatterns = [
     path('addToCart/<int:prdId>',views.addToCart,name='addToCart'),
     path('deleteCartRec/<int:prddId>',views.deleteCartRec,name='deleteCartRec'),
     path('adminHome/',views.adminHome,name='adminHome'),
+    path('adminBrand/',views.adminBrand,name="adminBrand"),
+    path('adminCategory/',views.adminCategory,name="adminCategory"),
+    path('adminSubCategory/',views.adminSubCategory,name="adminSubCategory"),
+    path('adminCurrency/',views.adminCurrency,name="adminCurrency"),
     path('adminLogin/', views.adminLogin,name='adminLogin'),
     path('addProduct/',views.addProdcut,name='addProduct'),
-   
-    
-    
-    
+    path('addBrand/',views.addBrand,name='addBrand'),
+    path('addCategory/',views.addCategory,name='addCategory'),
+    path('addSubCategory/',views.addSubCategory,name='addSubCategory'),
 ]
 
 
