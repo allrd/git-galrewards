@@ -106,10 +106,14 @@
             </div>
             <div class="col-lg-4 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <div class="btn-group mx-2">
+                    <div class="btn-group ">
                        <label class="btn btn-sm btn-light  --dark text-body mr-3 pt-2" style="color:black; background:transparent" >Hello, {{user.first_name}} !!!</label>
                     </div>
-                   
+                   <div class="btn-group mr-4">
+                    <label for="logout" >
+                      <a href="{% url 'logout' %}" style="color: black;">Logout</a>
+                    </label>
+                   </div>
                    
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
