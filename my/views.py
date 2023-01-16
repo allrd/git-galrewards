@@ -204,6 +204,11 @@ def deleteCartRec(request,prddId):
     
     return HttpResponseRedirect(reverse('cart'))
 
+def prdDelete(request,prdId):
+    rec = product.objects.get(id=prdId)
+    rec.delete()
+    return HttpResponseRedirect(reverse('adminHome'))
+
 def fetchproduct(request,ids):
     data={}
     unq_cat_list = []

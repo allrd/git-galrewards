@@ -40,6 +40,7 @@ urlpatterns = [
     path('addCategory/',views.addCategory,name='addCategory'),
     path('addSubCategory/',views.addSubCategory,name='addSubCategory'),
     path('addCurrency/',views.addCurrency,name='addCurrency'),
+    path('prdDelete/<int:prdId>',views.prdDelete,name="prdDelete"),
 ]
 
 

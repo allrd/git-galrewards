@@ -2,13 +2,13 @@
 
 {% if user.is_authenticated %}
    
-<div class="d-flex flex-column flex-shrink-0 p-3 col-md">
+<!-- <div class="d-flex flex-column flex-shrink-0 p-3 col-md"> -->
     <div class="d-flex align-items-center">
         <div class="d-inline-block">
         <h2 class="">Category</h2>
         </div>
         <div class="col-5 pl-4">
-        <a href="{% url 'addCategory'%}">+ Add</a>
+        <a href="{% url 'addCategory'%}" style="color: #4e6659;">+ Add</a>
         </div>
     </div>
     <table class="table table-striped">

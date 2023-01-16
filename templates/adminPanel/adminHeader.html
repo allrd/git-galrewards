@@ -25,6 +25,7 @@
      <link rel="stylesheet" href="{% static 'css/style1.css' %}"> 
 
     <title>Admin Panel</title>
+    <script src="https://kit.fontawesome.com/5eeb3988c9.js" crossorigin="anonymous"></script>
 
     <style>
         .bd-placeholder-img {
@@ -85,7 +86,7 @@
     <div class="text-center bg-dark text-light"> <h2>Admin Panel</h2></div>
     {% if user.is_authenticated %}
           <!-- Topbar Start -->
-    <div class="container-fluid">
+    <div class="container-fluid fixed-top">
         <div class="row bg-secondary py-1 px-xl-5">
             <div class="col-lg-4 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center h-100">
@@ -167,8 +168,8 @@
     
     <!-- Start Side Bar -->
     
-      <div class="row px-3">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark col-" style="height: 580px; width:233px;">
+      <div class="row px-3" style="margin-top: 100px;">
+    <div class="d-fex flex-column flex-shrink-0 p-3 text-white bg-dark fixed-top col-" style="height: 580px; width:233px; margin-top:130px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
           <span class="fs-4">Menu</span>
@@ -176,42 +177,48 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto" >
           <li class="nav-item pt-1">
-            <a href="{%url 'adminHome'%}" class="nav-link active" aria-current="page" style="background-color: bisque; color: #4E6659">
+            <a href="{%url 'adminHome'%}" class="nav-link active " aria-current="page" style="background-color: bisque; color: #4E6659">
+              <i class="fa-solid fa-truck-fast"></i>
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
               All Product
             </a>
           </li>
           <li class="nav-item pt-1" >
             <a href="{%url 'adminBrand'%}" class="nav-link active" aria-current="page" style="background-color: bisque; color: #4E6659">
+              <i class="fa-solid fa-thermometer"></i>
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
               Brand
             </a>
           </li>
           <li class="nav-item pt-1" >
             <a href="{%url 'adminCategory'%}" class="nav-link active" aria-current="page" style="background-color: bisque; color: #4E6659">
+              <i class="fa-solid fa-barcode"></i>
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
               Category
             </a>
           </li>
           <li class="nav-item pt-1" >
             <a href="{%url 'adminSubCategory'%}" class="nav-link active" aria-current="page" style="background-color: bisque; color: #4E6659">
+              <i class="fa-solid fa-bag-shopping"></i>
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
               Sub Category
             </a>
           </li>
           <li class="nav-item pt-1" >
             <a href="{%url 'adminCurrency'%}" class="nav-link active" aria-current="page" style="background-color: bisque; color: #4E6659">
+              <i class="fa-brands fa-ethereum"></i>
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
               Currency
             </a>
           </li>
           
         </ul>
-        <hr>
-        <div class="dropdown">
+        
+        <div class="dropdown fixed-bottom mb-5 ml-3">
+          <hr >
           <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>mdo</strong>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAABq0lEQVR4nI2Q/StDURjHryI/+AP4h6YRteQXlNaEEop5aRbzNlOULRqiYZtdibzMptGdjdtQ1+7dSttdzVuyMcSikO3RQfNa537rU6fnnO+ncw5B/BOjXJRlVZa0Ofsqp6ge6dB8U34OITQWRWE2PVDtfaL0SaAnIbkzAfvaOr9VWVIGBJGGFbj6K+dQCZW/c7euTVB9sjGsgNXLA9+LcYcOGEMjRJY1Sd+4nMcKuDH58fliL4QW2iG01AGnLg3AjRF8ZDOwow1hrMA9WHESWGsDuDX94MjdCZua8jOsgBoqjZ96uv8I0IzSlt5jBa5piTF2OJD4LUAz14zEgBXYdeLMY48i+FsQ9rQG0R4hJAcr0tqIX526RcTXm2BWZTWE0DSNbOWwNlks6K4DBFrXT+xmY4s9Fk48bA/RJHN1TTtUcM62vEM7OoE8uIqhPbXFK/q3rLb4imf3Li+3owDvXDzDNuf84OLlYxYFMO1Fot0kV/SjXDXOZOgdR/5UGYN+I8ypVFvpKYHKzBTY+MdXoQIb//Dabvbmfb2dZHO1a7xZZ+NNQkBnuz7/4g3A47RKHclXnAAAAABJRU5ErkJggg==" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>{{user.first_name}}</strong>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -222,5 +229,6 @@
           </ul>
         </div>
       </div>
+      <div class="d-flex flex-column flex-shrink-0 p-3 col-md " style="margin-left: 220px;">
       {% endif%}
     <!-- End Side Bar -->
