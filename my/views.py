@@ -7,6 +7,7 @@ from Product.models import category,product,cart,subCategory,brand,currency
 from django.template import loader
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
+from .forms import myfileUploadForm
 
 def logins(request):
     data={}
@@ -366,6 +367,12 @@ def addProdcut(request):
             #fill = request.FILES['file111']
             # form = UploadFileForm(request.POST, request.FILES)
             print("Rohit")
+            c_form= myfileUploadForm(request.POST, request.FILES)
+            
+            if c_form.is_valid():
+                files = c_form.cleaned_data['files']
+            
+            
             crr = product.objects.create(
                 productImage=fills,
                 Category = catogery,
@@ -378,6 +385,7 @@ def addProdcut(request):
                 points = pnt,
                 purchaseAmount = purAmount,
                 specifications = specific,
+               
             )
             print(crr)
     except:
