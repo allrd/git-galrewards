@@ -11,8 +11,8 @@
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label">Catogery:</label>
                 <div class="col-sm-10">
-                  <select name="catDetails" id="" class="form-select form-select-md col-lg-3">
-                    <option value=""></option>
+                  <select name="catDetails" id="" class="form-select form-select-md col-lg-3" >
+                    <option value="">{{cat1.category}}</option>
                     {%for ct in Cat%}
                     <option value="{{ct.id}}" name="catDetails">{{ct.category}}</option>
                     {%endfor%}
@@ -24,7 +24,7 @@
               <label for="" class="col-sm-2 col-form-label">Sub Catogery:</label>
                 <div class="col-sm-10">
                   <select name="SubCatogery" id="" class="form-select form-select-md col-lg-3">
-                    <option value=""></option>
+                    <option value="">{{subCat1.subCategory}}</option>
                     {%for sub_ct in Sub_Cat%}
                     <option value="{{sub_ct.id}}" name="SubCatogery">{{sub_ct.subCategory}}</option>
                     {%endfor%}
@@ -36,7 +36,7 @@
               <label for="" class="col-sm-2 col-form-label">Brand:</label>
                 <div class="col-sm-10">
                   <select name="brand" id="" class="form-select form-select-md col-lg-3">
-                    <option value=""></option>
+                    <option value="">{{brnd1.Brand}}</option>
                     {%for brd in Brnd%}
                     <option value="{{brd.id}}" name="brand">{{brd.Brand}}</option>
                     {%endfor%}
@@ -47,7 +47,7 @@
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label" >Product Name:</label>
                 <div class="col-sm-auto">
-                  <input type="text" class="form-control" name="prdDetails" value="" placeholder="Product Name">
+                  <input type="text" class="form-control" name="prdDetails" value="{{prdRec1.ProductName}}" placeholder="Product Name">
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
               <label for="" class="col-sm-2 col-form-label">Currency:</label>
                 <div class="col-sm-4">
                   <select name="Curren111" id="" onchange="scheduleA.call(this, event)" class="form-select form-select-md col-lg-3">
-                    <option value=""></option>
+                    <option value="">{{prdRec1.purchaseCurrency}}</option>
                     {%for curr in Cur%}
                     <option value="{{curr.id}}" name="Curren111" >{{curr.currency}}</option>
                     {%endfor%}
@@ -66,21 +66,21 @@
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label">Purchase Amount:</label>
                 <div class="col-sm-auto">
-                  <input type="number" id="purchaseAmount" class="form-control" onChange="calculateUsdAmount()" name="purchaseAmount111" value="" placeholder="0.00">
+                  <input type="number" id="purchaseAmount" class="form-control" onChange="calculateUsdAmount()" name="purchaseAmount111" value="{{prdRec1.purchaseAmount}}" placeholder="0.00">
                 </div>
             </div>
 
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label">Rate:</label>
                 <div class="col-sm-auto">
-                  <input type="number" id="rate" class="form-control" name="ratetake" value="" placeholder="0.00" step="any" >
+                  <input type="number" id="rate" class="form-control" name="ratetake" value="{{prdRec1.usdConversionRate}}" placeholder="0.00" step="any" >
                 </div>
             </div>
 
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label">Cost in USD:</label>
                 <div class="col-sm-auto">
-                  <input type="number" id="costInUsd" class="form-control" name="costInUsd111" value="" placeholder="0.00" >
+                  <input type="number" id="costInUsd" class="form-control" name="costInUsd111" value="{{prdRec1.costInUsd}}" placeholder="0.00" >
                 </div>
             </div>
 
@@ -94,14 +94,14 @@
             <div class="mb-3 row">
               <label for="" class="col-sm-2 col-form-label">Point:</label>
                 <div class="col-sm-auto">
-                  <input type="number" id="Point" class="form-control" name="PointMain" value="" placeholder="0.00" >
+                  <input type="number" id="Point" class="form-control" name="PointMain" value="{{prdRec1.points}}" placeholder="0.00" >
                 </div>
             </div>
 
             <div class="mb-3 row">
               <div class="input-group col-lg-6">
                 <span class="input-group-text">Specification</span>
-                <textarea class="form-control" aria-label="With textarea" name="specification111"></textarea>
+                <textarea class="form-control" aria-label="With textarea" name="specification111">{{prdRec1.specifications | safe}}</textarea>
               </div>
             </div>
 

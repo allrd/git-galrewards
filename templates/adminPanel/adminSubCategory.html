@@ -4,7 +4,7 @@
    
     <div class="d-flex align-items-center">
         <div class="d-inline-block">
-        <h2 class="">Sub Category</h2>
+        <h2 class="ml-5">Sub Category</h2>
         </div>
         <div class="col-5 pl-4">
         <a href="{% url 'addSubCategory'%}" style="color: #4e6659;">+ Add</a>
@@ -13,6 +13,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope="col">ID</th>
                 <th scope="col">Sub Category</th>
                 <th scope="col">Category</th>
@@ -21,6 +22,7 @@
         <tbody>
            {% for n in allSubCat%}
             <tr>
+                <td class="text-center" style="width: 12px;" ><a href="{%url 'subDelete' subId=n.id%}" class="text-danger">x</a></td>
                 <td>{{n.id}}</td>     
                 <td>{{n.subCategory}}</td>  
                 <td>{{n.categoryL}}</td>   

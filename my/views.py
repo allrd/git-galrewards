@@ -209,6 +209,81 @@ def prdDelete(request,prdId):
     rec.delete()
     return HttpResponseRedirect(reverse('adminHome'))
 
+def brdDelete(request,brdId):
+    rec = brand.objects.get(id=brdId)
+    rec.delete()
+    return HttpResponseRedirect(reverse('adminBrand'))
+
+def catDelete(request,catId):
+    rec = category.objects.get(id=catId)
+    rec.delete()
+    return HttpResponseRedirect(reverse('adminCategory'))
+
+def subDelete(request,subId):
+    rec = subCategory.objects.get(id=subId)
+    rec.delete()
+    return HttpResponseRedirect(reverse('adminSubCategory'))
+
+def curDelete(request,curId):
+    rec = currency.objects.get(id=curId)
+    rec.delete()
+    return HttpResponseRedirect(reverse('adminCurrency'))
+
+def curEdit(request,curId):
+    try:
+        if request.method=="POST":
+            cur_rec = request.POST.get('editId')
+            curr = request.POST.get('currencyMain')
+            rec = currency.objects.get(id=cur_rec)
+            print(cur_rec)
+            print(curr)
+            rec.currency = curr
+            rec.save()
+            curr1 = request.POST.get('currencyMain')
+            allCurrency = currency.objects.all()
+            data={
+                'allcat': allCurrency,
+            }
+            return render(request,'adminPanel/adminCurrency.html',data)
+        
+    except:
+        pass
+    curRec = currency.objects.get(id=curId)
+    data = {
+        'curName' : curRec
+    }
+    return render(request,'adminPanel/addCurrency.html',data) 
+
+def prdEdit(request,prdId):
+    try:
+        pass
+        
+    except:
+        pass
+    prdRec = product.objects.get(id=prdId)
+    cat = category.objects.all()
+    cat1 = category.objects.get(category=prdRec.Category)
+    subCat1 = subCategory.objects.get(subCategory=prdRec.subCategory)
+    sub_cat = subCategory.objects.all()
+    brnd = brand.objects.all()
+    brnd1 = brand.objects.get(Brand=prdRec.Brand)
+    curr = currency.objects.all()
+    print(prdRec)
+    print("Rohit")  
+    data = {
+        'Cat':cat,
+        'Sub_Cat':sub_cat,
+        'Brnd':brnd,
+        'Cur':curr,
+        'editPrd' : prdRec,
+        'cat1':cat1,
+        'subCat1' : subCat1,
+        'brnd1':brnd1,
+        'prdRec1': prdRec,
+       
+    }
+    return render(request,'adminPanel/addProduct.html',data) 
+
 def fetchproduct(request,ids):
     data={}
     unq_cat_list = []
@@ -393,17 +468,19 @@ def addSubCategory(request):
  
 def addCurrency(request):
     try:
-        if request.method == 'POST':
+        if request.method == 'POST' :
+            print('test')
             curr = request.POST.get('currencyMain')
-            addCrr = currency.objects.create(
-                currency = curr,
-            )
-            print('addCrr')
-            allCurrency = currency.objects.all()
-            data={
-                'allcat': allCurrency,
-            }
-            return render(request,'adminPanel/adminCurrency.html',data)
+            editId = request.POST.get('editId')
+            if editId == '':
+                addCrr = currency.objects.create(
+                    currency = curr,
+                )
+                allCurrency = currency.objects.all()
+                data={
+                    'allcat': allCurrency,
+                }
+                return render(request,'adminPanel/adminCurrency.html',data)
     except:
         pass
     

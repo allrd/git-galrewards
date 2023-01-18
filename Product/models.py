@@ -10,7 +10,7 @@ COUNTRY_CHOOSE = (
     ('turkey','TURKEY'),
 )
 
-CURRNECY_CHOOSE =(('ghs','GHS'),('usd','USD'))
+CURRNECY_CHOOSE =(('GHS','GHS'),('USD','USD'))
 
 class category(models.Model):
     category = models.CharField(max_length=30, unique=True)

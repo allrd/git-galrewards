@@ -10,9 +10,12 @@
         <div class="mb-3 row">
             <label for="" class="col-sm-2 col-form-label">Currency:</label>
                 <div class="col-sm-auto">
-                    <input type="text" class="form-control" name="currencyMain" value="" placeholder="$" maxlength="3">
+                    <input type="text" class="form-control" name="currencyMain" value="{{curName.currency }}" placeholder="$" maxlength="3">
+                    
                 </div>
         </div>
+        <input type="text" name="editId" value="{{curName.id}}">
+
         <input type="submit" value="Add Currency"class="btn btn-dark mx-3">
       </form>
     </div>

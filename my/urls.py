@@ -41,6 +41,13 @@ urlpatterns = [
     path('addSubCategory/',views.addSubCategory,name='addSubCategory'),
     path('addCurrency/',views.addCurrency,name='addCurrency'),
     path('prdDelete/<int:prdId>',views.prdDelete,name="prdDelete"),
+    path('brdDelete/<int:brdId>',views.brdDelete,name="brdDelete"),
+    path('catDelete/<int:catId>',views.catDelete,name="catDelete"),
+    path('subDelete/<int:subId>',views.subDelete,name="subDelete"),
+    path('curDelete/<int:curId>',views.curDelete,name="curDelete"),
+    path('curEdit/<int:curId>',views.curEdit,name="curEdit"),
+    path('prdEdit/<int:prdId>',views.prdEdit,name="prdEdit"),
+    
 ]
 
 
