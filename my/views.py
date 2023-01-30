@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 from .forms import myfileUploadForm
 
+
 def logins(request):
     data={}
     if request.method == "POST":
@@ -257,11 +258,53 @@ def curEdit(request,curId):
 
 def prdEdit(request,prdId):
     try:
-        pass
+        rec = product.objects.get(id=prdId)
+        if request.method=="POST":
+            cat_vb = request.POST.get('catDetails')
+            sub_cat11 = request.POST.get('SubCatogery')
+            brd_vb = request.POST.get('brand')
+            product_vb = request.POST.get('prdDetails')
+            curr_vb = request.POST.get('Curren111')
+            PurchaseAmount_vb = request.POST.get('purchaseAmount111')
+            Rate_vb = request.POST.get('ratetake')
+            CostInUSD_vb = request.POST.get('costInUsd111')
+            Point_vb = request.POST.get('PointMain')
+            Specification_vb = request.POST.get('specification111')
+            print(f"rohit {product_vb}")
+            
+            
+            # rec.purchaseAmount = PurchaseAmount_vb
+            # rec.usdConversionRate = Rate_vb
+            # rec.costInUsd = CostInUSD_vb
+            # rec.points = Point_vb
+            # rec.specifications = Specification_vb
+            
+            if cat_vb != "":
+                car_rec = category.objects.get(id=cat_vb)
+                rec.Category = car_rec
+                rec.save()
+            if sub_cat11 != "":
+                subCatRec = subCategory.objects.get(id=sub_cat11)
+                rec.subCategory = subCatRec
+                rec.save()
+            if brd_vb != "":
+                brd_rec = brand.objects.get(id=brd_vb)
+                rec.Brand = brd_rec
+                rec.save()    
+            if curr_vb != "":
+                curr_rec = currency.objects.get(id=curr_vb)
+                curr = curr_rec.currency
+                rec.purchaseCurrency = curr
+                rec.save()
+                
+            rec.ProductName = product_vb
+            print(rec.ProductName)
+            rec.Save()
         
     except:
         pass
     prdRec = product.objects.get(id=prdId)
+    
     cat = category.objects.all()
     cat1 = category.objects.get(category=prdRec.Category)
     subCat1 = subCategory.objects.get(subCategory=prdRec.subCategory)
@@ -269,8 +312,10 @@ def prdEdit(request,prdId):
     brnd = brand.objects.all()
     brnd1 = brand.objects.get(Brand=prdRec.Brand)
     curr = currency.objects.all()
-    print(prdRec)
-    print("Rohit")  
+    # specifiation = prdRec.specifications|safe
+    # print(specifiation)
+    # print(prdRec)
+    # print("Rohit")  
     data = {
         'Cat':cat,
         'Sub_Cat':sub_cat,
@@ -385,7 +430,7 @@ def addProdcut(request):
                 points = pnt,
                 purchaseAmount = purAmount,
                 specifications = specific,
-               
+                
             )
             print(crr)
     except:
