@@ -565,3 +565,5 @@ def adminLogin(request):
             messages.error(request,"Not a Admin User details")
 
     return render(request,'adminPanel/adminLogin.html')
+
+
