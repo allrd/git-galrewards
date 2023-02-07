@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 from .forms import myfileUploadForm
 
-# // rohit
+
 def logins(request):
     data={}
     if request.method == "POST":
