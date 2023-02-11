@@ -566,4 +566,6 @@ def adminLogin(request):
 
     return render(request,'adminPanel/adminLogin.html')
 
+def contact(request):
+    return render(request,'contact.html')
 

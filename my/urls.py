@@ -47,6 +47,7 @@ urlpatterns = [
     path('curDelete/<int:curId>',views.curDelete,name="curDelete"),
     path('curEdit/<int:curId>',views.curEdit,name="curEdit"),
     path('prdEdit/<int:prdId>',views.prdEdit,name="prdEdit"),
+    path('contact/',views.contact,name="contact"),
     
 ]
 
